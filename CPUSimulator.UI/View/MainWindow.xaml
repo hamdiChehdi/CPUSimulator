@@ -1,0 +1,101 @@
+﻿<Window x:Class="CPUSimulator.UI.View.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:uc="clr-namespace:CPUSimulator.UI.View"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="CPU SIM" MinHeight="600" MinWidth="1000" 
+        Height="700"
+        Width="1200">
+    <Window.Resources >
+        <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+    </Window.Resources>
+    
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="230"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <GroupBox Grid.ColumnSpan="2"
+                  Grid.RowSpan="3" Background="#fafafa"
+                  Header="Subroutine">
+            <TextBox Margin="3" 
+                Text="{Binding ProgramText}"
+                TextWrapping="Wrap"
+                AcceptsReturn="True"
+                VerticalScrollBarVisibility="Auto"/>
+        </GroupBox>
+
+        <GroupBox Grid.Column="3" Header="Instructions" 
+                  Background="#fafafa">
+            <uc:Instructions  />
+        </GroupBox>
+
+        <StackPanel Grid.Column="3" 
+                    Grid.Row="1"
+                    Orientation="Horizontal">
+            <TextBox
+                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                Text="{Binding Interval}"
+                Width="200"
+                MaxLength="9"
+                PreviewTextInput="NumberValidationTextBox"
+                VerticalAlignment="Center"
+                materialDesign:TextFieldAssist.HasClearButton="True"
+                materialDesign:TextFieldAssist.SuffixText="ms">
+                <materialDesign:HintAssist.Hint>
+                    <StackPanel
+                        Orientation="Horizontal"
+                        Margin="-2 0 0 0">
+                        <TextBlock Text="Execution speed per instruction" />
+                    </StackPanel>
+                </materialDesign:HintAssist.Hint>
+            </TextBox>
+            <materialDesign:Card
+                    UniformCornerRadius="14"
+                    Visibility="{Binding IsRunning, Converter={StaticResource BoolToVisibilityConverter}}"
+                    Height="32"
+                    Margin="10,2"
+                    Padding="4">
+                <ProgressBar
+                    Style="{StaticResource MaterialDesignCircularProgressBar}"
+                    Value="50"
+                    IsIndeterminate="True" />
+            </materialDesign:Card>
+
+        </StackPanel>
+
+        <StackPanel Grid.Column="3" Orientation="Horizontal"
+                    Grid.Row="2">
+            <Button Content="Run" 
+                    Visibility="{Binding IsNotRunning, Converter={StaticResource BoolToVisibilityConverter}}"
+                    Margin="2"
+                    Command="{Binding RunProgramCommand}"
+                    Height="32"
+                    Width="100"/>
+            <Button Content="Cancel" 
+                    Visibility="{Binding IsRunning, Converter={StaticResource BoolToVisibilityConverter}}"
+                    Margin="2"
+                    Command="{Binding CancelCommand}"
+                    Height="32"
+                    Width="100"/>
+            <Button Content="Clear" 
+                    Margin="2"
+                    Command="{Binding ClearProgramCommand}"
+                    Height="32"
+                    Width="100"/>
+        </StackPanel>
+
+        <uc:RegisterGrid Grid.Row="3" Grid.ColumnSpan="4" />
+    </Grid>
+</Window>
