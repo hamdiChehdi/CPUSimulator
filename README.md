@@ -15,4 +15,4 @@ The CPU has 43 32-bit unsigned integer registers, which are named R00..R42. At t
   - NOP - does nothing.
 
 ![](MainUI.png)
-![](ScreenshotRunningUI)
+![](ScreenshotRunningUI.png)
