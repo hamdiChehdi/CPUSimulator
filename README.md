@@ -14,5 +14,13 @@ The CPU has 43 32-bit unsigned integer registers, which are named R00..R42. At t
   - JZ d - jumps to instruction d (1-based) only if R00 contains 0;
   - NOP - does nothing.
 
+- Features :
+  - Clear button : erase all registers, Clear the program zone)
+  - Run button: compile and run instructions one by one without blocking the UI
+  - Execution Speed: time to add between instruction 
+  - Cancel button: appear after starting execution.
+- Technologies:
+ NET 5, Xaml, WPF, Sprache, NUnit
+ 
 ![](MainUI.png)
 ![](ScreenshotRunningUI.png)
