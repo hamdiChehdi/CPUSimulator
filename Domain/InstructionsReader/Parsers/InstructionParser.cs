@@ -1,10 +1,8 @@
 ﻿namespace Domain.Parsers
 {
     using Sprache;
-    using Superpower;
     using System;
     using System.Collections.Generic;
-    using System.Linq;
 
     public partial class InstructionParser
     {
