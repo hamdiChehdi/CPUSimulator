@@ -13,3 +13,5 @@ JMP d - unconditionally jumps to instruction number d (1-based). d is guaranteed
 JZ d - jumps to instruction d (1-based) only if R00 contains 0;
 NOP - does nothing.
 After the last instruction has been executed, the contents of R42 are considered to be the result of the subroutine.
+
+![](mainUI.png)
